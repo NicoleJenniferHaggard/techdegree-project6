@@ -23,35 +23,34 @@ startGame.addEventListener('click', () => {
 
 //return a random phrase from array
 function getRandomPhraseAsArray(arr) {
-  const randomNumber = Math.floor(Math.random()*arrlength);
-  const randomPhrase = arr[randomNumber].toLowerCase();
-  let randomSplit = randomPhrase.split(' ');
+  const randomPhrase = phraseArray[Math.floor(Math.random() * phraseArray.length)];
+  let phraseSplit = randomPhrase.split('');
   console.log(randomSplit);
-  return randomPhrase.split(' ');
+  return randomSplit;
 }
 
 // adds the letters of a string to the display
 function addPhraseToDisplay (arr) {
+  const splitPhrase = getRandomPhraseAsArray();
    for (i = 0; i < splitPhrase.length; i++) {
      const li = document.createElement('li');
        li.textContent = splitPhrase[i];
        ul.appendChild(li);
         //checking for spacing
         if (splitPhrase[i] === " " ) {
-  text.className.add('space');
-} else {
-    li.className.add('letter');
-}
-}
+          text.classList.add('space');
+      } else {
+          li.classList.add('letter');
+        }
+      }
 };
-
 //check the letters of a string to the display
 function checkLetter(button) {
   const li = document.querySelectorAll('li');
   let match = null;
     for (i = 0; i < li.length; i++) {
-      if (li[i].textContent === li[i].textContent.toLowerCase() ) {
-      li[i].className.add('show');
+      if (li[i].textContent === button.textContent) {
+      li[i].classList.add('show');
       match = (li[i] = button.textContent);
     }
   }
@@ -62,10 +61,16 @@ function checkLetter(button) {
 // listens for the on screen keyboard to be clicked
 qwerty.addEventListener('click', (e) => {
   const buttonClick = e.target;
-  if (button.className === 'BUTTON' || button.className === 'chosen') {
+  if (buttonClick.tagName === 'BUTTON' || button.className === 'chosen') {
+    buttonClick.className === 'chosen';
     buttonClick.disabled = true;
-  if (letterFound = null) {
-
+    const letterFound = checkLetter(e.target);
+  if (letterFound === null) {
+    const heartLoss = document.querySelectorAll('.tries img');
+    heartLoss.src='images/lostHeart.png';
+    heartLoss.className = 'lost';
+    missedGuess++;
   }
   }
+  //checkWin();
 });
