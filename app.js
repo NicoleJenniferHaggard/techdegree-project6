@@ -57,3 +57,16 @@ function checkLetter(button) {
   }
   return match;
 };
+
+
+// listens for the on screen keyboard to be clicked
+qwerty.addEventListener('click', (e) => {
+  const buttonClick = e.target;
+  if (button.className === 'BUTTON' || button.className === 'chosen') {
+    buttonClick.disabled = true;
+    const letterFound = checkLetter(buttonClick);
+  if (letterFound = null) {
+    
+  }
+  }
+});
