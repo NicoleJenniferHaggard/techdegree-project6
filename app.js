@@ -61,11 +61,27 @@ qwerty.addEventListener('click', (e) => {
     buttonClick.disabled = true;
     const letterFound = checkLetter(e.target);
   if (letterFound === null) {
-    const heartLoss = document.querySelectorAll('.tries img');
+    const heartLoss = document.querySelectorAll(".tries img");
     heartLoss.src='images/lostHeart.png';
     heartLoss.className = 'lost';
     missedGuess++;
   }
   }
-  //checkWin();
+  checkWin();
 });
+
+//checks if the game has been wont or lost
+function checkWin() {
+  const letter = document.querySelectorAll('.letter');
+  const show = document.querySelectorAll('show');
+  if (letter.length === show.letter.length) {
+    overlay.className = 'win';
+    title.textContent = 'You Win!';
+    overlay.style.display = 'flex';
+    }
+    if (missedGuess > 4) {
+      overlay.className = 'lose';
+      title.textContent = 'You Lose';
+      overlay.style.dispay = 'flex';
+    }
+};
