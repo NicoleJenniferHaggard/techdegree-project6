@@ -30,20 +30,16 @@ function getRandomPhraseAsArray(arr) {
 }
 
 // adds the letters of a string to the display
-function addPhraseToDisplay (arr) {
-  const splitPhrase = getRandomPhraseAsArray();
-   for (i = 0; i < splitPhrase.length; i++) {
-     const li = document.createElement('li');
-       li.textContent = splitPhrase[i];
-       ul.appendChild(li);
-        //checking for spacing
-        if (splitPhrase[i] === " " ) {
-          text.classList.add('space');
-      } else {
-          li.classList.add('letter');
-        }
-      }
-};
+function addPhraseToDisplay(arr) {
+  const li = document.querySelectorAll('li');
+  let match = null;
+  for(let i = 0; i < li.length; i++){
+    if (button.textContent === li[i].textContent){
+      li[i].classList.add('show');
+      match = button.textContent;
+    }
+  }
+}
 //check the letters of a string to the display
 function checkLetter(button) {
   const li = document.querySelectorAll('li');
@@ -57,10 +53,9 @@ function checkLetter(button) {
   return match;
 };
 
-
 // listens for the on screen keyboard to be clicked
 qwerty.addEventListener('click', (e) => {
-  const buttonClick = e.target;
+  let buttonClick = e.target;
   if (buttonClick.tagName === 'BUTTON' || button.className === 'chosen') {
     buttonClick.className === 'chosen';
     buttonClick.disabled = true;
