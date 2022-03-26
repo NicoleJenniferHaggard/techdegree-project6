@@ -28,7 +28,6 @@ function getRandomPhraseAsArray(arr) {
   console.log(phraseSplit);
   return phraseSplit;
 }
-
 const randomPhrasesArray = getRandomPhraseAsArray(phrases);
 
 
@@ -45,42 +44,36 @@ function addPhraseToDisplay(arr) {
   }
   addPhraseToDisplay(randomPhraseArray);
 
-
-
-
-
-
-
-  
 //check the letters of a string to the display
-// function checkLetter(button) {
-//   const li = document.querySelectorAll('li');
-//   let match = null;
-//     for (i = 0; i < li.length; i++) {
-//       if (li[i].textContent === button.textContent) {
-//       li[i].classList.add('show');
-//       match = (li[i] = button.textContent);
-//     }
-//   }
-//   return match;
-// };
+function checkLetter(button) {
+  const liArr = document.querySelectorAll('li');
+    let match = null;
+    for ( let i = 0; i < liArr.length; i++) {
+      if (button.textContent === liArr[i].textContent) {
+    liArr[i].classList.add('show');
+    match = true;
+  }
+ }
+return match;
+};
 
 // listens for the on screen keyboard to be clicked
-// qwerty.addEventListener('click', (e) => {
-//   let buttonClick = e.target;
-//   if (buttonClick.tagName === 'BUTTON' || button.className === 'chosen') {
-//     buttonClick.className === 'chosen';
-//     buttonClick.disabled = true;
-//     const letterFound = checkLetter(e.target);
+qwerty.addEventListener('click', (e) =>  {
+  let buttonClick = e.target;
+  if (buttonClick.tagName !== 'BUTTON' || button.className === 'chosen') {
+      return;
+    }
+      buttonClick.className.add('chosen');
+    //  buttonClick. for true
 //   if (letterFound === null) {
-//     const heartLoss = document.querySelectorAll(".tries img");
-//     heartLoss.src='images/lostHeart.png';
-//     heartLoss.className = 'lost';
-//     missedGuess++;
-//   }
-//   }
-//   checkWin();
-// });
+  let correctLetter = checkLetter(e.target);
+  if ((!correctLetter) && lives.length > 0) {
+    img[missedGuess].src = "images/lostHeart.png";
+    missedGuess++;
+  }
+
+checkWin()
+})
 
 //checks if the game has been wont or lost
 // function checkWin() {
@@ -96,4 +89,5 @@ function addPhraseToDisplay(arr) {
 //       title.textContent = 'You Lose';
 //       overlay.style.dispay = 'flex';
 //     }
-};
+//
+}
