@@ -28,7 +28,7 @@ function getRandomPhraseAsArray(arr) {
   console.log(phraseSplit);
   return phraseSplit;
 }
-const randomPhrasesArray = getRandomPhraseAsArray(phrases);
+const randomPhraseArray = getRandomPhraseAsArray(phrases);
 
 
 // adds the letters of a string to the display
@@ -42,6 +42,7 @@ function addPhraseToDisplay(arr) {
       li.className = 'space';
     }
   }
+}
   addPhraseToDisplay(randomPhraseArray);
 
 //check the letters of a string to the display
@@ -90,4 +91,4 @@ checkWin()
 //       overlay.style.dispay = 'flex';
 //     }
 //
-}
+//}
