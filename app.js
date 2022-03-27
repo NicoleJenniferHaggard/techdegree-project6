@@ -36,6 +36,7 @@ function addPhraseToDisplay(arr) {
   for (let i = 0; i <arr.length; i += 1){
     const li = document.createElement('li');
     phraseUl.appendChild(li);
+      li.textContent = arr[i];
     if (arr[i] !== ' ') {
       li.className = 'letter';
     } else {
@@ -59,36 +60,33 @@ return match;
 };
 
 // listens for the on screen keyboard to be clicked
-qwerty.addEventListener('click', (e) =>  {
-  let buttonClick = e.target;
-  if (buttonClick.tagName !== 'BUTTON' || button.className === 'chosen') {
-      return;
+qwerty.addEventListener('click', (event) =>  {
+  const btn = event.target;
+  if (event.target.tagName === 'BUTTON' || event.target.className === 'chosen') {
+    btn.classList.add('chosen');
+    btn.setAttribute('disabled', '');
+    const letterCheck = checkLetter(btn);
+  if (letterCheck === null) {
+    const lost = document.querySelectorAll('.tries img')[missedGuess];
+    lost.src='images/lostHeart.png';
+    lost.className = 'lost';
+    missedGuess++
     }
-      buttonClick.className.add('chosen');
-    //  buttonClick. for true
-//   if (letterFound === null) {
-  let correctLetter = checkLetter(e.target);
-  if ((!correctLetter) && lives.length > 0) {
-    img[missedGuess].src = "images/lostHeart.png";
-    missedGuess++;
   }
-
-checkWin()
-})
+   checkWin();
+});
 
 //checks if the game has been wont or lost
-// function checkWin() {
-//   const letter = document.querySelectorAll('.letter');
-//   const show = document.querySelectorAll('show');
-//   if (letter.length === show.letter.length) {
-//     overlay.className = 'win';
-//     title.textContent = 'You Win!';
-//     overlay.style.display = 'flex';
-//     }
-//     if (missedGuess > 4) {
-//       overlay.className = 'lose';
-//       title.textContent = 'You Lose';
-//       overlay.style.dispay = 'flex';
-//     }
-//
-//}
+function checkWin() {
+const letter = document.querySelectorAll('.letter');
+const show = document.querySelectorAll('.show');
+if (letter.length === show.length) {
+  overlay.className = 'win';
+  title.textContent = 'You Win!';
+  overlay.style.display = 'flex';
+} else if (missedGuess > 4) {
+  overlay.className = 'lose';
+  title.textContent = 'You Lose.';
+  overlay.style.display = 'flex';
+}
+};
